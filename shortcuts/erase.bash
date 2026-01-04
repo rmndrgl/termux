@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+termux-wake-lock
+
 DIRECTORY="$HOME/storage/shared"
 
 cd $DIRECTORY
@@ -33,5 +35,7 @@ if [[ -d Pictures ]]; then
 	rm -rf Pictures
 	echo 'Pictures -> Ok!'
 fi
+
+termux-wake-unlock
 
 sleep 3

@@ -1,17 +1,19 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+termux-wake-lock
+
 DIRECTORY="$HOME/storage/shared/YT"
 
 cd $DIRECTORY
 
-NOW=$(date +%Y-%m-%d)
+NOW=$(date +%H-%M-%S)
 
-echo 'Opcion:'
-echo '0.- Audio'
-echo '1.- Video'
-echo '2.- Playlist aac'
+echo 'Option:'
+echo '1.- Audio flac'
+echo '2.- Video mp4'
+echo '3.- Playlist flac'
 echo '4.- Playlist mp4'
-echo '5.- Quit'
+echo '0.- Quit'
 
 echo
 read option
@@ -19,36 +21,35 @@ read option
 echo
 echo $option
 
+function create_folder()
+{
+	clear
+	echo 'URL?'
+	read url
+	mkdir $NOW
+	cd $NOW
+}
+
 case $option in
 
 	0)
-		clear
-		echo 'URL?'
-		read url
-		if [[ !-d $NOW ]]; then
-			mkdir $NOW
-		fi
-		cd $NOW
+		create_folder
 		yt-dlp -x --audio-format flac --audio-quality 0 --embed-thumbnail --embed-metadata $url
 	;;
 
 	1)
-		clear
-		echo 'URL?'
-		read url
-		if [[ !-d $NOW ]]; then
-			mkdir $NOW
-		fi
-		cd $NOW
-		yt-dlp -x --merge-output-format mp4 $url
+		create_folder
+		yt-dlp -t mp4 $url
 	;;
 
 	2)
-		#yt-dlp --yes-playlist -x --extract-audio --audio-format flac --audio-quality 0 --embed-thumbnail --embed-metadata $url
+		create_folder
+		yt-dlp --yes-playlist -x --audio-format flac --audio-quality 0 --embed-thumbnail --embed-metadata $url
 	;;
 
 	3)
-		#yt-dlp --yes-playlist -x --merge-output-format mp4 $url
+		create_folder
+		yt-dlp --yes-playlist -t mp4 $url
 	;;
 
 	5)
@@ -59,5 +60,7 @@ case $option in
 	;;
 	
 esac
+
+termux-wake-unlock
 
 sleep 3
