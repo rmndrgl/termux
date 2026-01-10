@@ -4,6 +4,6 @@ termux-wake-lock
 
 yt-dlp -U
 
-termux-wake-lock
+termux-wake-unlock
 
 sleep 3

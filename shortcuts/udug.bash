@@ -6,6 +6,6 @@ pkg update
 pkg upgrade -y
 pkg clean
 
-termux-wake-lock
+termux-wake-unlock
 
 sleep 3
