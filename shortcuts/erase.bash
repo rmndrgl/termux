@@ -41,6 +41,11 @@ if [[ -d Pictures ]]; then
 	echo 'Pictures -> Ok!'
 fi
 
+if [[ -d Recordings ]]; then
+	rm -rf Recordings
+	echo 'Recordings -> Ok!'
+fi
+
 termux-wake-unlock
 
 sleep 3
